@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+      "all": "ka2projectmod:block/redstoner_texture"
+    }
+  }

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+      "all": "ka2projectmod:block/returner",
+      "up": "ka2projectmod:block/returner_top"
+    }
+  }

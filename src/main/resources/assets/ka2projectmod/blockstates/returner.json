@@ -1,0 +1,7 @@
+{
+    "variants":{
+        "triggered=false":{"model":"ka2projectmod:block/returner_model_off"},
+        "triggered=true":{"model":"ka2projectmod:block/returner_model_on"}
+    }
+    
+}
