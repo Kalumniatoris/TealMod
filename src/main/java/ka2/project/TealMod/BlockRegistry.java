@@ -1,5 +1,6 @@
 package ka2.project.TealMod;
 
+import ka2.project.TealMod.block.FallGeneratorBlock;
 import ka2.project.TealMod.block.PlatformerBlock;
 import ka2.project.TealMod.block.RedstonerBlock;
 import ka2.project.TealMod.block.ReturnerBlock;
@@ -25,4 +26,6 @@ public static final RegistryObject<Block> uselessium_block=BLOCKS.register("usel
 
 public static final RegistryObject<Block> platformer=BLOCKS.register("platformer",PlatformerBlock::new);
 
+
+public static final RegistryObject<Block> fall_generator=BLOCKS.register("fall_generator", FallGeneratorBlock::new);
 }

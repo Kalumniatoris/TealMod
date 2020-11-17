@@ -26,4 +26,5 @@ public static final RegistryObject<Item> uselessium_block=ITEMS.register("useles
 
 public static final RegistryObject<Item> platformer=ITEMS.register("platformer", ()->new BlockItem(BlockRegistry.platformer.get(),new Item.Properties().group(ModGroup.ITEM_GROUP)));
 
+public static final RegistryObject<Item> fallgenerator=ITEMS.register("fallgenerator", ()->new BlockItem(BlockRegistry.fall_generator.get(),new Item.Properties().group(ModGroup.ITEM_GROUP)));
 }

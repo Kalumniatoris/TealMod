@@ -1,5 +1,6 @@
 package ka2.project.TealMod;
 
+import ka2.project.TealMod.tileEntity.FallGeneratorTileEntity;
 import ka2.project.TealMod.tileEntity.PlatformerTileEntity;
 import ka2.project.TealMod.tileEntity.ReturnerTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -22,5 +23,5 @@ public static final RegistryObject<TileEntityType<ReturnerTileEntity>> returnerT
 public static final RegistryObject<TileEntityType<PlatformerTileEntity>> platformerTileEntity = TILE_ENTITIES.register("platformer_tileentity", ()->TileEntityType.Builder.create(PlatformerTileEntity::new, BlockRegistry.platformer.get()).build(null));
 //public static final RegistryObject<TileEntityType<AdvancedReturnerTileEntity>> AdvancedreturnerTileEntity = TILE_ENTITIES.register("advanced_returner_tileentity", ()->TileEntityType.Builder.create(AdvancedReturnerTileEntity::new, BlockRegistry.advancedReturner.get()).build(null));
 
-
+public static final RegistryObject<TileEntityType<FallGeneratorTileEntity>> fallGeneratorTileEntity=TILE_ENTITIES.register("fallgenerator_tileentity", ()->TileEntityType.Builder.create(FallGeneratorTileEntity::new, BlockRegistry.fall_generator.get()).build(null));
 }

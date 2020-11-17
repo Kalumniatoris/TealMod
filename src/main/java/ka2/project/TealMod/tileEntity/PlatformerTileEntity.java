@@ -6,6 +6,7 @@ import ka2.project.TealMod.TealMod;
 import ka2.project.TealMod.TileEntityTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.CraftingTableBlock;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.inventory.IInventory;
@@ -20,11 +21,15 @@ import net.minecraft.util.math.BlockPos;
 public class PlatformerTileEntity extends TileEntity implements ITickableTileEntity {
 	private int clim = 3;//10
 	private int cou = 0;
-
+	private int cx=0;
+	private int cy=0;
+	private int lim=1;
+	//TODO EVERYTHING HERE
 	public PlatformerTileEntity() {
 		super(TileEntityTypeRegistry.platformerTileEntity.get());
 	}
-
+	
+	
 	@Nullable
 	public TileEntity getTEAbove() {
 		return this.world.getTileEntity(this.pos.add(0, 1, 0));
@@ -40,6 +45,11 @@ public class PlatformerTileEntity extends TileEntity implements ITickableTileEnt
 	private boolean isOn = false;
 	BlockPos target = new BlockPos(this.getPos());
 	public void platformerActivated() {
+		lim=1;
+		cx=0;
+		cy=1;
+		
+		
 		target=this.getPos();
 		TealMod.logger.debug("Platformer clicked");
 		if(world.isRemote()) {
@@ -106,9 +116,10 @@ public class PlatformerTileEntity extends TileEntity implements ITickableTileEnt
 				if (stos.getItem() instanceof BlockItem) {
 					TealMod.logger.debug("block");
 					target = target.add(0, 0, 1);
-					if((target.getZ()-pos.getZ())>(target.getX()-pos.getX())) {
+					if((target.getZ()-pos.getZ())>lim) {
 						
 						target=target.add(1, 0, -target.getZ()+pos.getZ());
+						lim+=1;
 					}
 					if (world.isAirBlock(target)) {
 						
