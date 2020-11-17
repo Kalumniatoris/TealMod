@@ -2,7 +2,6 @@ package ka2.project.TealMod.tileEntity;
 
 import ka2.project.TealMod.TealMod;
 import ka2.project.TealMod.TileEntityTypeRegistry;
-import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.energy.IEnergyStorage;
 

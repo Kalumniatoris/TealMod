@@ -4,13 +4,10 @@ import javax.annotation.Nullable;
 
 import ka2.project.TealMod.TealMod;
 import ka2.project.TealMod.tileEntity.FallGeneratorTileEntity;
-import ka2.project.TealMod.tileEntity.ReturnerTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.FallingBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -21,7 +18,6 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 
 public class FallGeneratorBlock extends Block {
 
@@ -49,6 +45,7 @@ public class FallGeneratorBlock extends Block {
 		if(!worldIn.isRemote()) {
 		if (entityIn instanceof FallingBlockEntity) {
 			TealMod.logger.debug("fbe falled on: ");
+			TealMod.logger.debug("what? : "+((FallingBlockEntity) entityIn).getBlockState().toString());
 			FallGeneratorTileEntity fgte = (FallGeneratorTileEntity) worldIn.getTileEntity(pos);
 			fgte.generate(fallDistance, 100);
 			

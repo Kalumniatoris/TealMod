@@ -27,5 +27,5 @@ public static final RegistryObject<Block> uselessium_block=BLOCKS.register("usel
 public static final RegistryObject<Block> platformer=BLOCKS.register("platformer",PlatformerBlock::new);
 
 
-public static final RegistryObject<Block> fall_generator=BLOCKS.register("fall_generator", FallGeneratorBlock::new);
+public static final RegistryObject<Block> fall_generator=BLOCKS.register("fallgenerator", FallGeneratorBlock::new);
 }
