@@ -18,9 +18,13 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+
+
 
 public class FallGeneratorBlock extends Block {
 
+	
 	public FallGeneratorBlock() {
 		super(Properties.create(Material.IRON).hardnessAndResistance(0.6f));
 
@@ -33,7 +37,8 @@ public class FallGeneratorBlock extends Block {
 		return true;
 
 	}
-
+	
+	
 	@Nullable
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
