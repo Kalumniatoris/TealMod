@@ -26,7 +26,7 @@ public class TealMod
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MODID = "ka2projectmod";
-    public static final Logger logger = LogManager.getLogger(MODID);
+    public static final Logger logger = LOGGER;// LogManager.getLogger(MODID);
     public TealMod() {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
