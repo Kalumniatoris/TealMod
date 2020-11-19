@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import ka2.project.TealMod.TealMod;
 import ka2.project.TealMod.TileEntityTypeRegistry;
+import ka2.project.TealMod.stuff.GenEner;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
@@ -16,10 +17,10 @@ import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 public class FallGeneratorTileEntity extends TileEntity{
 
-	protected EnergyStorage ES=new EnergyStorage(100000, 100000, 100000);
+	protected GenEner ES=new GenEner(100000);//=new EnergyStorage(100000, 100000, 100000);
 	
 
-    private LazyOptional<IEnergyStorage> energy = LazyOptional.of(this::createEnergy);
+    private LazyOptional<IEnergyStorage> energy = LazyOptional.of(()->ES);
 	
     
  //   @CapabilityInject(IEnergyStorage.class)
@@ -40,10 +41,6 @@ public class FallGeneratorTileEntity extends TileEntity{
 		// TODO Auto-generated constructor stub
 	}
 	
-	private IEnergyStorage createEnergy() {
-		return ES;
-	}
-	
 	   @Override
 	    public void remove() {
 	        super.remove();
@@ -51,7 +48,7 @@ public class FallGeneratorTileEntity extends TileEntity{
 	    }
 
 	   
-	public int generate(float distance, int type) {
+	public void generate(float distance, int type) {
 		world.getClosestPlayer(pos.getX(),pos.getY(),pos.getZ(), 100,null).sendStatusMessage(ITextComponent.getTextComponentOrEmpty("GENERATING?"), false);;
 		
 		int inc=(int)(distance*type);
@@ -60,8 +57,9 @@ public class FallGeneratorTileEntity extends TileEntity{
 		
 		
 		TealMod.logger.debug("GENERATED "+inc+"\n(or less if that exceds capacity)\n");
-		
-		return ES.receiveEnergy(inc, false);
+		 ES.generate(inc);
+		 sendEnergy(getEnergyStored());
+		return;
 	}
 
 	public int getEnergyStored() {
@@ -75,7 +73,10 @@ public class FallGeneratorTileEntity extends TileEntity{
 		return ES.getMaxEnergyStored();
 	}
 	
-
+	public void sendEnergy(int amount) {
+		ES.spreadEnergy(pos, world, amount);
+		return;
+	}
 	
 
     @Nonnull
@@ -84,7 +85,7 @@ public class FallGeneratorTileEntity extends TileEntity{
        /* if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return handler.cast();
         }*/
-        if (cap == CapabilityEnergy.ENERGY) {
+        if (cap == CapabilityEnergy.ENERGY && side!=Direction.UP) {
             return energy.cast();
         }
         return super.getCapability(cap, side);
