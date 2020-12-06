@@ -1,9 +1,14 @@
 package ka2.project.TealMod.stuff;
 
+import com.mojang.brigadier.Command;
+
 import ka2.project.TealMod.TealMod;
+import net.minecraft.block.NetherPortalBlock;
+import net.minecraft.tileentity.CommandBlockLogic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.NonNullFunction;
@@ -57,6 +62,8 @@ public class GenEner implements IEnergyStorage {
 	@Override
 	public int getEnergyStored() {
 		return energy;
+		
+		
 	}
 
 	@Override

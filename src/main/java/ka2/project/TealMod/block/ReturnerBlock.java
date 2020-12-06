@@ -8,8 +8,10 @@ import ka2.project.TealMod.TealMod;
 import ka2.project.TealMod.tileEntity.ReturnerTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.TorchBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -21,6 +23,8 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ReturnerBlock extends Block {
 	// private static IntegerProperty STATE = IntegerProperty.create("powered", 0,
@@ -99,9 +103,21 @@ public class ReturnerBlock extends Block {
 		
 	
 	}
+	
+	   @OnlyIn(Dist.CLIENT)
+	   public void animateTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		   
+	      double d0 = (double)pos.getX() + 1D+rand.nextDouble();
+	      double d1 = (double)pos.getY() + 2.7D;
+	      double d2 = (double)pos.getZ() - 1D+rand.nextDouble();
+	      worldIn.addParticle(ParticleTypes.REVERSE_PORTAL, d0, d1, d2, rand.nextDouble()*0.1-0.05, 1.02D, rand.nextDouble()*0.1-0.05);
+	     // worldIn.addParticle(this.particleData, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+	   }
+	
 
 	@Override
 	public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
+		
 		//summon(worldIn, pos);
 		// TODO Auto-generated method stub
 		//super.tick(state, worldIn, pos, rand);
@@ -115,6 +131,8 @@ public class ReturnerBlock extends Block {
 			ReturnerTileEntity rte = (ReturnerTileEntity) worldIn.getTileEntity(pos);
 
 			TealMod.logger.debug("attempting teleport");
+			rte.summon();
+			/*
 
 			rte.getPlayers().forEach((PlayerEntity p) -> {
 
@@ -124,8 +142,8 @@ public class ReturnerBlock extends Block {
 				if (!p.isSneaking()) {
 					p.teleportKeepLoaded(pos.getX() + 0.5, pos.getY() + 2, pos.getZ() + 0.5);
 				}
-			});
-
+			});*/
+			
 		} 
 		
 	}
